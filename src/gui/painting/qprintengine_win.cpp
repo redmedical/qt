@@ -1616,6 +1616,20 @@ void QWin32PrintEngine::releaseDC(HDC) const
 
 }
 
+HGLOBAL QWin32PrintEngine::getDevMode()
+{
+    HGLOBAL hDevMode = 0;
+    int devModeSize = 0;
+    devModeSize = sizeof(DEVMODE) + d_func()->devMode->dmDriverExtra;
+    hDevMode = GlobalAlloc(GHND, devModeSize);
+    if (hDevMode) {
+        void *dest = GlobalLock(hDevMode);
+        memcpy(dest, d_func()->devMode, devModeSize);
+        GlobalUnlock(hDevMode);
+    }
+    return hDevMode;
+}
+
 HGLOBAL *QWin32PrintEnginePrivate::createDevNames()
 {
     int size = sizeof(DEVNAMES)

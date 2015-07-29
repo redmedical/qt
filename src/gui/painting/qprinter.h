@@ -227,6 +227,7 @@ public:
 #ifdef Q_WS_WIN
     void setWinPageSize(int winPageSize);
     int winPageSize() const;
+    HGLOBAL getDevMode();
 #endif
 
     QRect paperRect() const;

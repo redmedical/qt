@@ -101,6 +101,7 @@ public:
 
     HDC getDC() const;
     void releaseDC(HDC) const;
+    HGLOBAL getDevMode();
 
     HDC getPrinterDC() const { return getDC(); }
     void releasePrinterDC(HDC dc) const { releaseDC(dc); }
