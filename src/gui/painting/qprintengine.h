@@ -110,6 +110,7 @@ public:
     virtual QPrinter::PrinterState printerState() const = 0;
 
 #ifdef Q_WS_WIN
+    virtual HGLOBAL getDevMode() { return 0; }
     virtual HDC getPrinterDC() const { return 0; }
     virtual void releasePrinterDC(HDC) const { }
 #endif

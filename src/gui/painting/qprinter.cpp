@@ -1825,6 +1825,13 @@ int QPrinter::winPageSize() const
     Q_D(const QPrinter);
     return d->printEngine->property(QPrintEngine::PPK_WindowsPageSize).toInt();
 }
+
+HGLOBAL QPrinter::getDevMode()
+{
+    Q_D(const QPrinter);
+    return d->printEngine->getDevMode();
+
+}
 #endif // Q_WS_WIN
 
 /*!

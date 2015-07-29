@@ -116,7 +116,9 @@ typedef long HRESULT;
 
 typedef struct tagMSG MSG;
 typedef HWND WId;
-
+typedef void *PVOID;
+typedef PVOID HANDLE;
+typedef HANDLE HGLOBAL;
 
 QT_BEGIN_NAMESPACE
 
