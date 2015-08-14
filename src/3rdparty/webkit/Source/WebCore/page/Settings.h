@@ -359,6 +359,9 @@ namespace WebCore {
         void setPrintingMaximumShrinkFactor(float);
         float printingMaximumShrinkFactor() const { return m_printingMaximumShrinkFactor; }
 
+        void setPrintingConstGraphicsContextScale(float);
+        float printingConstGraphicsContextScale() const { return m_printingConstGraphicsContextScale; }
+
         void setPaginateDuringLayoutEnabled(bool flag) { m_paginateDuringLayoutEnabled = flag; }
         bool paginateDuringLayoutEnabled() const { return m_paginateDuringLayoutEnabled; }
 
@@ -441,6 +444,7 @@ namespace WebCore {
         double m_passwordEchoDurationInSeconds;
         float m_printingMinimumShrinkFactor;
         float m_printingMaximumShrinkFactor;
+        float m_printingConstGraphicsContextScale;
         int m_minimumFontSize;
         int m_minimumLogicalFontSize;
         int m_defaultFontSize;

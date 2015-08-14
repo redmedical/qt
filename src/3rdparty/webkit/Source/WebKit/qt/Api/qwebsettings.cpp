@@ -80,6 +80,7 @@ public:
     qint64 offlineStorageDefaultQuota;
     qreal printingMinimumShrinkFactor;
     qreal printingMaximumShrinkFactor;
+    qreal printingConstGraphicsContextScale;
 
     void apply();
     WebCore::Settings* settings;
@@ -243,6 +244,9 @@ void QWebSettingsPrivate::apply()
 
         float maximumShrinkFactor = printingMaximumShrinkFactor > 0.0f ? printingMaximumShrinkFactor : global->printingMaximumShrinkFactor;
         settings->setPrintingMaximumShrinkFactor(maximumShrinkFactor);
+
+        float constGraphicsContextScale = printingConstGraphicsContextScale > 0.0f ? printingConstGraphicsContextScale : global->printingConstGraphicsContextScale;
+        settings->setPrintingConstGraphicsContextScale(constGraphicsContextScale);
 
         value = attributes.value(QWebSettings::PrintElementBackgrounds,
                                       global->attributes.value(QWebSettings::PrintElementBackgrounds));
@@ -533,6 +537,7 @@ QWebSettings::QWebSettings()
     d->defaultTextEncoding = QLatin1String("iso-8859-1");
     d->printingMinimumShrinkFactor = 1.25f;
     d->printingMaximumShrinkFactor = 2.0f;
+    d->printingConstGraphicsContextScale = 0.0f;
 }
 
 /*!
@@ -543,6 +548,7 @@ QWebSettings::QWebSettings(WebCore::Settings* settings)
 {
     d->printingMinimumShrinkFactor = 0.0f;
     d->printingMaximumShrinkFactor = 0.0f;
+    d->printingConstGraphicsContextScale = 0.0f;
     d->settings = settings;
     d->apply();
     allSettings()->append(d);
@@ -729,6 +735,26 @@ qreal QWebSettings::printingMaximumShrinkFactor() const
 {
     return d->printingMaximumShrinkFactor;
 }
+
+/*!
+ * \brief QWebSettings::setPrintingConstGraphicsContextScale
+ * \param printingConstGraphicsContextScale
+ */
+void QWebSettings::setPrintingConstGraphicsContextScale(qreal printingConstGraphicsContextScale)
+{
+    d->printingConstGraphicsContextScale = printingConstGraphicsContextScale;
+    d->apply();
+}
+
+/*!
+ * \brief QWebSettings::printingConstGraphicsContextScale
+ * \return
+ */
+qreal QWebSettings::printingConstGraphicsContextScale() const
+{
+    return d->printingConstGraphicsContextScale;
+}
+
 
 /*!
     Sets the path of the icon database to \a path. The icon database is used

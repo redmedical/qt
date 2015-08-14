@@ -225,14 +225,19 @@ float PrintContext::computeAutomaticScaleFactor(const FloatSize& availablePaperS
     return max(maxShrinkToFitScaleFactor, shrinkToFitScaleFactor);
 }
 
-float printContextspoolPage_fScaleConst = 1.0f;
+//float printContextspoolPage_fScaleConst = 1.0f;
 void PrintContext::spoolPage(GraphicsContext& ctx, int pageNumber, float width)
 {
     // FIXME: Not correct for vertical text.
     IntRect pageRect = m_pageRects[pageNumber];
     // float scale = width / pageRect.width();
+    //float scale = printContextspoolPage_fScaleConst;
+    float scale = m_frame->settings() ?
+                m_frame->settings()->printingConstGraphicsContextScale() : 0.0f;
 
-    float scale = printContextspoolPage_fScaleConst;
+    if (scale == 0.0f) {
+        scale = width / pageRect.width();
+    }
     ctx.save();
     ctx.scale(FloatSize(scale, scale));
     ctx.translate(-pageRect.x(), -pageRect.y());

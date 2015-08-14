@@ -125,6 +125,9 @@ public:
     void setPrintingMaximumShrinkFactor(qreal printingMaximimShrinkFactor);
     qreal printingMaximumShrinkFactor() const;
 
+    void setPrintingConstGraphicsContextScale(qreal printingConstGraphicsContextScale);
+    qreal printingConstGraphicsContextScale() const;
+
     static void setIconDatabasePath(const QString &location);
     static QString iconDatabasePath();
     static void clearIconDatabase();

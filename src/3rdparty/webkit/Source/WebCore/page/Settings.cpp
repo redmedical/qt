@@ -187,6 +187,7 @@ Settings::Settings(Page* page)
     , m_passwordEchoEnabled(false)
     , m_printingMinimumShrinkFactor(0.0)
     , m_printingMaximumShrinkFactor(0.0)
+    , m_printingConstGraphicsContextScale(0.0)
 {
     // A Frame may not have been created yet, so we initialize the AtomicString 
     // hash before trying to use it.
@@ -762,5 +763,9 @@ void Settings::setPrintingMaximumShrinkFactor(float printingMaximumShrinkFactor)
     m_printingMaximumShrinkFactor = printingMaximumShrinkFactor;
 }    
 
+void Settings::setPrintingConstGraphicsContextScale(float printingConstGraphicsContextScale)
+{
+    m_printingConstGraphicsContextScale = printingConstGraphicsContextScale;
+}
 
 } // namespace WebCore
